@@ -1,0 +1,50 @@
+// 1导入相关包
+import Vue from 'vue'
+import vueRouter from 'vue-router'
+import vueResource from 'vue-resource'
+
+// 导入.vue组件
+import App from './App.vue'
+
+import '../statics/mui/css/mui.css'
+import '../statics/mui/css/icons-extra.css'
+// import '../statics/mui/js/mui.min.js'
+
+import mintUI from 'mint-ui'
+
+import 'mint-ui/lib/style.min.css'
+
+// 2在Vue中加载vueRouter
+
+Vue.use(vueRouter)
+Vue.use(vueResource)
+Vue.use(mintUI)
+
+Vue.filter('tolowercase1',function(input,p){
+	return input.toLowerCase()
+})
+
+// 3定义路由规则
+import '../statics/css/site.css'
+import Home from './components/Home/Home.vue'
+import member from './components/member/member.vue'
+import shopcar from './components/shopcar/shopcar.vue'
+import search from './components/search/search.vue'
+
+let router = new vueRouter({
+	linkActiveClass:'mui-active',
+	routes:[
+		{name:'root',path:'/',redirect:'./Home'},
+		{name:'home',path:'/Home',component:Home},
+		{name:'member',path:'/member',component:member},
+		{name:'shopcar',path:'/shopcar',component:shopcar},
+		{name:'search',path:'/search',component:search}
+	]
+})
+
+// 4使用router
+new Vue({
+	el:'#app',
+	router,
+	render:c=>c(App)
+})
