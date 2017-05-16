@@ -11,7 +11,7 @@
 				</router-link >
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-	            <router-link to="/news/newslist">
+	            <router-link to="/photo/photolist">
                     <span class="mui-icon icon-photo"></span>
                     <div class="mui-media-body">图片分享</div>
 				</router-link >

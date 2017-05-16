@@ -3,5 +3,6 @@
  */
 
 export default{
-    apihost:'http://webhm.top:8899'
+    apihost:'http://webhm.top:8899',
+    imghost:'http://www.webhm.top:8080/'
 }
