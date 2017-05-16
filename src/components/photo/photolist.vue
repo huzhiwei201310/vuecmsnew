@@ -13,6 +13,7 @@
             <li v-for="item in list">
                 <h4>{{item.title}}</h4>
                 <img v-lazy="item.img_url">
+                <p>{{item.zhaiyao}}</p>
             </li>
         </ul>
       </div>
@@ -31,6 +32,23 @@
         width: 100%;
         margin:0 auto;
     }
+    .imglist ul li{
+        position: relative;
+        padding: 0 0 10px;
+    }
+    .imglist ul li h4{
+        line-height: 130%;
+        color: #333;
+    }
+    .imglist ul li p{
+        position: absolute;
+        width: 100%;
+        padding: 10px;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        left: 0;
+        bottom: 8px;
+    }
     image[lazy=loading] {
     width: 40px;
     height: 300px;
@@ -43,6 +61,7 @@
          overflow-x: auto; 
          overflow-y: hidden;
          background: #fff;
+         z-index: 10;
     }
     .cate ul{ 
         width: 900px;
@@ -84,7 +103,10 @@ export default {
       getimglist(cateid){
         let url = common.apihost+'/api/getimages/'+cateid;
         this.$http.get(url).then(res=>{
-            let imghost = common.imghost
+            // let imghost = common.imghost
+            // res.body.message.forEach(item=>{
+            //     item.img_url = imghost+item.img_url
+            // });
             this.list = res.body.message
         },res=>{
             console.log('获取失败！')
