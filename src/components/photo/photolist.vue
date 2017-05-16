@@ -2,7 +2,7 @@
   <div class="tmpl">
       <!--分类-->
       <div class="cate">
-          <ul>
+          <ul id="cateul">
                 <li><a @click="getimglist(0)">全部</a></li>
               <li v-for="item in catelist"><a @click="getimglist(item.id)">{{item.title}}</a></li>
           </ul>
@@ -12,7 +12,9 @@
           <ul>
             <li v-for="item in list">
                 <h4>{{item.title}}</h4>
+                <router-link v-bind="{to:'/photo/photoinfo/'+item.id}">
                 <img v-lazy="item.img_url">
+                </router-link>
                 <p>{{item.zhaiyao}}</p>
             </li>
         </ul>
@@ -80,6 +82,7 @@
 </style>
 <script>
 import common from '../../kits/common.js'
+import { Indicator } from 'mint-ui'
 export default {
   data(){
       return{
@@ -95,12 +98,17 @@ export default {
       getcate(){
         let url = common.apihost + '/api/getimgcategory';
         this.$http.get(url).then(res=>{
-            this.catelist = res.body.message
+            this.catelist = res.body.message;
+            document.getElementById('cateul').style.width = (res.body.message.length+1)*80+'px';
         },res=>{
             console.log('获取失败！')
         })
       },
       getimglist(cateid){
+        Indicator.open({
+            text: '加载中...',
+            spinnerType: 'fading-circle'
+        });
         let url = common.apihost+'/api/getimages/'+cateid;
         this.$http.get(url).then(res=>{
             // let imghost = common.imghost
@@ -108,6 +116,7 @@ export default {
             //     item.img_url = imghost+item.img_url
             // });
             this.list = res.body.message
+            Indicator.close();
         },res=>{
             console.log('获取失败！')
         })
