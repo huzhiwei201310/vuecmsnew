@@ -1,7 +1,12 @@
 body{
 	background: #fff;
+	font-size: 12px;
 }
 
 .app .tmpl{
-	margin: 40px 0 0;
+	margin: 40px 0 50px;
 }
+
+/*清除浮动代码*/ 
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0} 
+.clearfloat{zoom:1} 

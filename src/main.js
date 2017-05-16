@@ -20,8 +20,10 @@ Vue.use(vueRouter)
 Vue.use(vueResource)
 Vue.use(mintUI)
 
-Vue.filter('tolowercase1',function(input,p){
-	return input.toLowerCase()
+import moment from 'moment'
+Vue.filter('fmtdate',function(input,datefmtstring){
+	// let date = new Date(input);
+	return moment(input).format(datefmtstring)
 })
 
 // 3定义路由规则
@@ -30,6 +32,8 @@ import Home from './components/Home/Home.vue'
 import member from './components/member/member.vue'
 import shopcar from './components/shopcar/shopcar.vue'
 import search from './components/search/search.vue'
+import newslist from './components/news/newslist.vue'
+import newsinfo from './components/news/newsinfo.vue'
 
 let router = new vueRouter({
 	linkActiveClass:'mui-active',
@@ -38,7 +42,9 @@ let router = new vueRouter({
 		{name:'home',path:'/Home',component:Home},
 		{name:'member',path:'/member',component:member},
 		{name:'shopcar',path:'/shopcar',component:shopcar},
-		{name:'search',path:'/search',component:search}
+		{name:'search',path:'/search',component:search},
+		{name:'newslist',path:'/news/newslist',component:newslist},
+		{name:'newsinfo',path:'/news/newsinfo/:id',component:newsinfo}
 	]
 })
 
