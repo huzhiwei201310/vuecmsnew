@@ -71,7 +71,7 @@ export default {
       }
   },
   created(){
-    this.getcomment(this.pageindex);
+    this.getcomment(this.pageindex,false);
   },
   methods:{
     postcomment(){
@@ -85,16 +85,21 @@ export default {
         }
         this.$http.post(url,{content:contentText},{emulateJSON:true}).then(res=>{
             Toast('评论提交成功')
-            this.getcomment(this.pageindex)
+            this.getcomment(this.pageindex,true)
             this.$refs.postcontent.value = ''
         },res=>{
             console.log('提交失败!')
         })
     },
-    getcomment(pageindex){
+    getcomment(pageindex,isreload){
         let url =common.apihost+ '/api/getcomments/'+this.artid+'?pageindex='+pageindex;
         this.$http.get(url).then(res=>{
-            this.comments = this.comments.concat(res.body.message) 
+            if(isreload){
+                this.comments = res.body.message
+            }else{
+                this.comments = this.comments.concat(res.body.message) 
+            }
+            
         },res=>{
             console.log('获取失败!')
         })
@@ -102,7 +107,7 @@ export default {
     },
     getmore(){
         this.pageindex++
-        this.getcomment(this.pageindex)
+        this.getcomment(this.pageindex,false)
     }
   },
   props:['artid']

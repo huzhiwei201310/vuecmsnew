@@ -20,6 +20,9 @@ Vue.use(vueRouter)
 Vue.use(vueResource)
 Vue.use(mintUI)
 
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 import moment from 'moment'
 Vue.filter('fmtdate',function(input,datefmtstring){
 	// let date = new Date(input);
