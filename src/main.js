@@ -39,6 +39,8 @@ import newslist from './components/news/newslist.vue'
 import newsinfo from './components/news/newsinfo.vue'
 import photolist from './components/photo/photolist.vue'
 import photoinfo from './components/photo/photoinfo.vue'
+import goodslist from './components/goods/goodslist.vue'
+import goodsinfo from './components/goods/goodsinfo.vue'
 
 let router = new vueRouter({
 	linkActiveClass:'mui-active',
@@ -51,7 +53,9 @@ let router = new vueRouter({
 		{name:'newslist',path:'/news/newslist',component:newslist},
 		{name:'newsinfo',path:'/news/newsinfo/:id',component:newsinfo},
 		{name:'photolist',path:'/photo/photolist',component:photolist},
-		{name:'photoinfo',path:'/photo/photoinfo/:id',component:photoinfo}
+		{name:'photoinfo',path:'/photo/photoinfo/:id',component:photoinfo},
+		{name:'goodslist',path:'/goods/goodslist',component:goodslist},
+		{name:'goodsinfo',path:'/goods/goodsinfo/:id',component:goodsinfo}
 	]
 })
 
