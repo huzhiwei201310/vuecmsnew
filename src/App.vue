@@ -38,6 +38,14 @@
 </template>
 
 <script>
+import {vueobj} from './kits/commonvue.js'
+vueobj.$on('shopdata',function(data){
+	// console.log(data)
+	let badge = document.getElementById('badge')
+	let count = badge.innerText-0
+	count+=data
+	badge.innerText = count
+})
 	export default{
 		data(){
 			return{
