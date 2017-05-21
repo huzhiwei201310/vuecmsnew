@@ -124,9 +124,9 @@ export default {
             this.imagelist = res.body.message;
         })
     },
-    getcount(count){
+    getcount(obj){
         // console.log('count='+count)
-        this.goodscount = count
+        this.goodscount = obj.count
     },
     getgoodsinfo(){
         let id = this.$route.params.id
